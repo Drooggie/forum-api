@@ -24,6 +24,7 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
+        'avatar'
     ];
 
     /**
@@ -49,13 +50,18 @@ class User extends Authenticatable
         ];
     }
 
-    public function setPasswordAttribute($value)
+    public function setPasswordAttribute($value)  // Hashing incoming password
     {
         $this->attributes['password'] = Hash::make($value);
     }
 
-    public function findForPassport(string $username): User
+    public function findForPassport(string $username): User  // Laravel/Passport username customisation.
     {
         return $this->where('username', $username)->first();
+    }
+
+    public function avatar(): string
+    {
+        return 'https://www.gravatar.com/avatar/' . md5($this->username) . '?s=40&=d=mm';
     }
 }
