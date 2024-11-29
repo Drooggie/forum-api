@@ -2,12 +2,12 @@
 
 Clone Repository 
 ```
-git clone https://github.com/Drooggie/template-docker-laravel.git
+git clone https://github.com/Drooggie/forum-api.git
 ``` 
 
 Move into Repository 
 ```
-cd template-docker-laravel
+cd forum-api
 ``` 
 
 
@@ -17,7 +17,4 @@ docker compose up -d --build
 ```  
 <br />
 
-Run this commands for migration:
-```
-docker exec qortex_app php artisan migrate:fresh --seed --force
-```
+Then API project will be available in <a href="http://localhost:8888/">localhost:4388</a>
