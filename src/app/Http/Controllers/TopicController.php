@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TopicStoreRequest;
+use App\Http\Requests\TopicUpdateRequest;
 use App\Http\Resources\PostResource;
 use App\Http\Resources\TopicResource;
 use App\Models\Post;
 use App\Models\Topic;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Response as FacadesResponse;
 
 class TopicController extends Controller
 {
@@ -42,13 +48,13 @@ class TopicController extends Controller
 
         $created_topic = Topic::create([
             "title" => $validated['title'],
-            "user_id" => $validated['user_id'],
+            "user_id" => Auth::id(),
         ]);
 
         $created_post = Post::create([
             "post" => $validated['post'],
-            "user_id" => $validated['user_id'],
-            "topic_id" => $created_topic->id
+            "topic_id" => $created_topic->id,
+            "user_id" => Auth::id(),
         ]);
 
         return response()->json([
@@ -58,5 +64,31 @@ class TopicController extends Controller
                 "post"  => new PostResource($created_post),
             ],
         ]);
+    }
+
+    public function update(Request $request, Topic $topic): JsonResponse
+    {
+        Gate::authorize('update', $topic);
+
+        $validated = $request->validate([
+            "title" => "max:255",
+        ]);
+
+        $topic->title = $validated['title'];
+        $topic->save();
+
+        return response()->json([
+            "message" => "You successfully updated information about Topic",
+            "data" => new TopicResource($topic),
+        ]);
+    }
+
+    public function destroy(Topic $topic): JsonResponse
+    {
+        Gate::authorize('delete', $topic);
+
+        $topic->delete();
+
+        return response()->json(null, 204);
     }
 }
