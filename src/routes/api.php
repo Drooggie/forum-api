@@ -3,6 +3,7 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostLikeController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', [UserController::class, 'index']);
@@ -22,5 +23,10 @@ Route::group(["prefix" => "topics"], function () {
         Route::post('/', [PostController::class, 'store'])->middleware('auth:api');
         Route::patch('/{post}', [PostController::class, 'update'])->middleware('auth:api');
         Route::delete('/{post}', [PostController::class, 'destroy'])->middleware('auth:api');
+
+        Route::group(["prefix" => "/{post}/likes"], function () {
+            Route::post('/', [PostLikeController::class, 'store'])->middleware("auth:api");
+            Route::delete('/{like}', [PostLikeController::class, 'destroy'])->middleware("auth:api");
+        });
     });
 });

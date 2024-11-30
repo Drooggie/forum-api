@@ -48,19 +48,10 @@ class PostPolicy
         return $user->ownsThisPost($post);
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Post $post): bool
+    public function like(User $user, Post $post): bool
     {
-        return false;
-    }
+        if ($user->ownsThisPost($post)) return false;
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Post $post): bool
-    {
-        return false;
+        return $post->likes->where('user_id', $user->id)->count() === 0;
     }
 }
