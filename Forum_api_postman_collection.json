@@ -27,7 +27,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"jhon\",\r\n    \"first_name\": \"Jhon\",\r\n    \"last_name\": \"Doe\",\r\n    \"email\": \"jhon@email.com\",\r\n    \"password\": \"somepassword\"\r\n}",
+							"raw": "{\r\n    \"username\": \"jhonConor\",\r\n    \"first_name\": \"Jhon\",\r\n    \"last_name\": \"Doe\",\r\n    \"email\": \"jhonConor@email.com\",\r\n    \"password\": \"somepassword\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -66,7 +66,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"grant_type\": \"password\",\r\n    \"client_id\": \"9d972b26-20d9-417b-a66a-99c1bae0ba38\",\r\n    \"client_secret\": \"j1RqsuSfKfR40n5cHVG4mGF02HeoaCahALTqIIJr\",\r\n    \"username\": \"jhon\",\r\n    \"password\": \"somepassword\",\r\n    \"scope\": \"*\"\r\n}",
+							"raw": "{\r\n    \"grant_type\": \"password\",\r\n    \"client_id\": \"9d9bf89c-9ffd-4064-af78-6910abc0ff12\",\r\n    \"client_secret\": \"C5fv0tF9P1mzs926lERyVIqv01ZLsmmBo9qw4Tkl\",\r\n    \"username\": \"jhonConor\",\r\n    \"password\": \"somepassword\",\r\n    \"scope\": \"*\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -349,7 +349,7 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8888/api/topics/6/posts",
+							"raw": "localhost:8888/api/topics/2/posts",
 							"host": [
 								"localhost"
 							],
@@ -357,7 +357,7 @@
 							"path": [
 								"api",
 								"topics",
-								"6",
+								"2",
 								"posts"
 							]
 						}
@@ -386,7 +386,7 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:8888/api/topics/6/posts/2",
+							"raw": "localhost:8888/api/topics/1/posts/1",
 							"host": [
 								"localhost"
 							],
@@ -394,9 +394,9 @@
 							"path": [
 								"api",
 								"topics",
-								"6",
+								"1",
 								"posts",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -537,6 +537,91 @@
 								"6",
 								"posts",
 								"12"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Likes",
+			"item": [
+				{
+					"name": "Store Like",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:8888/api/topics/1/posts/1/likes",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"topics",
+								"1",
+								"posts",
+								"1",
+								"likes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Like",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8888/api/topics/1/posts/1/likes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"api",
+								"topics",
+								"1",
+								"posts",
+								"1",
+								"likes",
+								"1"
 							]
 						}
 					},
