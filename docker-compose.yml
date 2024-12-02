@@ -41,7 +41,7 @@ services:
       - ./src:/var/www
       - ./nginx:/etc/nginx/conf.d
     ports:
-      - "8888:80"
+      - "4388:80"
     networks:
       - forum_api_network
     depends_on:
